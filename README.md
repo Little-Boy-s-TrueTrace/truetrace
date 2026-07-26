@@ -2,6 +2,12 @@
 
 TrueTrace is a next-generation autonomous compliance platform designed for banks and financial institutions to automate AML (Anti-Money Laundering) checks, KYC (Know Your Customer) identity verification, and deepfake fraud detection. Powered by a collaborative Multi-Agent AI system, TrueTrace analyzes customer onboarding video/images, traces illicit money movements (mule accounts), and generates regulatory Suspicious Transaction Reports (STR) automatically.
 
+> Production guardrail: TrueTrace provides decision support. AI findings are not
+> legal conclusions, and STR submission always requires an authorized human reviewer.
+
+Detailed design: [Vietnamese architecture](docs/ARCHITECTURE.vi.md) ·
+[test matrix](docs/TESTING.md)
+
 ---
 
 ## 🏗️ System Architecture

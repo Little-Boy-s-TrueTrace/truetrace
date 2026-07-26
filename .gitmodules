@@ -1,0 +1,33 @@
+[submodule ".github"]
+	path = .github
+	url = https://github.com/Little-Boy-s-TrueTrace/.github.git
+[submodule "agent-aml-reporter"]
+	path = agent-aml-reporter
+	url = https://github.com/Little-Boy-s-TrueTrace/agent-aml-reporter.git
+[submodule "agent-deepfake-inspector"]
+	path = agent-deepfake-inspector
+	url = https://github.com/Little-Boy-s-TrueTrace/agent-deepfake-inspector.git
+[submodule "agent-money-trail"]
+	path = agent-money-trail
+	url = https://github.com/Little-Boy-s-TrueTrace/agent-money-trail.git
+[submodule "truetrace-agent-engine"]
+	path = truetrace-agent-engine
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-agent-engine.git
+[submodule "truetrace-backend"]
+	path = truetrace-backend
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-backend.git
+[submodule "truetrace-dashboard"]
+	path = truetrace-dashboard
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-dashboard.git
+[submodule "truetrace-deployment"]
+	path = truetrace-deployment
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-deployment.git
+[submodule "truetrace-mobile-app"]
+	path = truetrace-mobile-app
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-mobile-app.git
+[submodule "truetrace-terraform"]
+	path = truetrace-terraform
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-terraform.git
+[submodule "truetrace-web-client"]
+	path = truetrace-web-client
+	url = https://github.com/Little-Boy-s-TrueTrace/truetrace-web-client.git

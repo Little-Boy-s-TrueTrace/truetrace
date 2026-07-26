@@ -1,0 +1,30 @@
+# Node & JS
+node_modules/
+dist/
+.next/
+out/
+
+# Java & Maven
+target/
+*.class
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+venv/
+.venv/
+
+# Deployment & Logs
+logs/
+*.log
+*.tmp
+backups/
+
+# System & IDE
+.DS_Store
+.idea/
+.vscode/
+.env
+!.env.example

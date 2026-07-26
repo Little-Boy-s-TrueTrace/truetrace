@@ -1,0 +1,49 @@
+name: TrueTrace Full Stack CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-stack-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docker-e2e:
+    name: Build, boot and verify KYC/AML/STR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout all TrueTrace repositories
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Validate Compose
+        working-directory: truetrace-deployment
+        run: docker compose config --quiet
+
+      - name: Build and start full stack
+        working-directory: truetrace-deployment
+        run: docker compose up -d --build --wait --wait-timeout 240
+
+      - name: Run full-stack KYC and AML smoke test
+        run: python truetrace-deployment/scripts/full_stack_smoke.py
+
+      - name: Show service status and failure logs
+        if: always()
+        working-directory: truetrace-deployment
+        run: |
+          docker compose ps -a
+          docker compose logs --no-color --tail=250
+
+      - name: Stop test stack
+        if: always()
+        working-directory: truetrace-deployment
+        run: docker compose down --volumes --remove-orphans

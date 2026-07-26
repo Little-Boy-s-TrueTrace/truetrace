@@ -1,5 +1,5 @@
-[submodule ".github"]
-	path = .github
+[submodule "organization-profile"]
+	path = organization-profile
 	url = https://github.com/Little-Boy-s-TrueTrace/.github.git
 [submodule "agent-aml-reporter"]
 	path = agent-aml-reporter

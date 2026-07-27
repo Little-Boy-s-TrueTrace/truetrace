@@ -5,6 +5,8 @@ TrueTrace is a next-generation autonomous compliance platform designed for banks
 > Production guardrail: TrueTrace provides decision support. AI findings are not
 > legal conclusions, and STR submission always requires an authorized human reviewer.
 
+Production gates and external go-live requirements: [docs/PRODUCTION-READINESS.md](docs/PRODUCTION-READINESS.md).
+
 Detailed design: [Vietnamese architecture](docs/ARCHITECTURE.vi.md) ·
 [test matrix](docs/TESTING.md)
 

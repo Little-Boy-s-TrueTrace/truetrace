@@ -113,28 +113,74 @@ The TrueTrace project workspace contains the following components:
 
 ## Quick Start
 
-### 1. Run the entire platform locally via Docker Compose
+### Prerequisites
 
-Prerequisite: Ensure **Docker Desktop** is running. Then navigate to the deployment folder:
+- **Docker Desktop** (v4.x+) installed and running
+- **Git** installed
+- At least **8 GB RAM** allocated to Docker (Settings > Resources)
+
+### 1. Clone the repository (with all submodules)
+
+```bash
+git clone --recursive https://github.com/Little-Boy-s-TrueTrace/truetrace.git
+cd truetrace
+```
+
+> If you already cloned without `--recursive`, run:
+> ```bash
+> git submodule update --init --recursive
+> ```
+
+### 2. Configure environment and start
 
 ```bash
 cd truetrace-deployment
 cp .env.example .env
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
-Once started, the services can be accessed at:
-- **Customer Portal**: <http://localhost:3000>
-- **Compliance Dashboard**: <http://localhost:80/soc/> (User: `admin`, Pass: `admin123`)
-- **Core Bank Backend API**: <http://localhost:8080>
-- **Kafka Message Visualizer (Kafdrop)**: <http://localhost:9000>
-
-### 2. Verify all services are healthy
+First build takes 5-10 minutes. Wait for all containers to be healthy:
 
 ```bash
-docker ps
+docker compose ps
 ```
-You should see all 10 containers in the `truetrace-` network running and marked as healthy.
+
+You should see 11 containers running (postgres, redis, kafka, kafka-init, kafka-ui, backend, agent-engine, dashboard-backend, dashboard-frontend, web-client, nginx).
+
+### 3. Access the platform
+
+All services are accessed through the Nginx gateway on port 80:
+
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **Customer Portal** | http://localhost | Register a new account |
+| **Compliance Dashboard** | http://localhost/soc/ | `admin` / `admin123` |
+| **Banking API** | http://localhost/api-bank/ | -- |
+| **Dashboard API** | http://localhost/api/ | -- |
+| **Kafka UI (Kafdrop)** | http://localhost:9000 | -- |
+
+### 4. Run the demo
+
+1. Open http://localhost and register a customer account
+2. Go to KYC page, upload selfie + CCCD front/back images, submit
+3. Open http://localhost/soc/ to see the KYC result on the compliance dashboard
+4. Back on the customer portal, make a money transfer
+5. Check the AML Alerts and STR Reports tabs on the dashboard
+
+### Troubleshooting
+
+```bash
+# View logs for a specific service
+docker compose logs -f backend
+docker compose logs -f agent-engine
+
+# Restart everything
+docker compose down -v
+docker compose up --build -d
+
+# Check if backend is healthy
+curl http://localhost/api-bank/health
+```
 
 ---
 

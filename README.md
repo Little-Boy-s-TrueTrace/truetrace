@@ -21,7 +21,7 @@
 </p>
 
 > **Built with [Qoder](https://qoder.com)** -- AI-Powered Spec-Driven Development
-> [Development Specs & Prompts](SPEC.md) | [Architecture (Vietnamese)](docs/ARCHITECTURE.vi.md) | [Test Matrix](docs/TESTING.md) | [Production Readiness](docs/PRODUCTION-READINESS.md)
+> [Development Specs & Prompts](SPEC.md) | [Architecture](docs/ARCHITECTURE.md) | [Test Matrix](docs/TESTING.md) | [Production Readiness](docs/PRODUCTION-READINESS.md)
 
 ---
 

@@ -1,6 +1,6 @@
-# Kiểm thử TrueTrace
+# TrueTrace Testing
 
-Chạy từng lớp:
+Run each layer:
 
 ```powershell
 cd truetrace-agent-engine
@@ -37,7 +37,7 @@ cd ..\truetrace-deployment
 docker compose --env-file .env.example config
 ```
 
-Kiểm thử tích hợp đầy đủ bằng Docker:
+Full integration testing with Docker:
 
 ```powershell
 cd ..
@@ -45,13 +45,6 @@ docker compose -f truetrace-deployment/docker-compose.yml up -d --build --wait
 python truetrace-deployment/scripts/full_stack_smoke.py
 ```
 
-Verifier này cũng chạy trong `.github/workflows/full-stack-ci.yml`. Nó xác nhận
-hai nhánh quyết định KYC và toàn bộ chuỗi AML: Kafka event, phát hiện fan-out
-trong 60 giây, đóng băng tạm thời, alert đủ 1 tỷ VND và STR liên kết ở trạng
-thái `DRAFT` chờ con người phê duyệt.
+This verifier also runs in `.github/workflows/full-stack-ci.yml`. It validates both KYC decision branches and the full AML chain: Kafka event, fan-out detection within 60 seconds, temporary freeze, alert reaching 1 billion VND, and a linked STR in `DRAFT` status awaiting human approval.
 
-Test quan trọng nhất nằm tại
-`truetrace-agent-engine/tests/test_graph_analyzer.py`: một tài khoản nhận 1 tỷ VND
-và chuyển 900 triệu tới 20 tài khoản trong 60 giây phải bị nhận diện rapid mule
-dispersion. `test_agents.py` kiểm tra tiếp việc đóng băng, escalated alert và STR
-nháp bắt buộc human approval.
+The most important test is located at `truetrace-agent-engine/tests/test_graph_analyzer.py`: an account receives 1 billion VND and transfers 900 million to 20 accounts within 60 seconds, which must be identified as rapid mule dispersion. `test_agents.py` further tests the freeze, escalated alert, and draft STR requiring human approval.

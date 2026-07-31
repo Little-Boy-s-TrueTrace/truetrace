@@ -13,11 +13,14 @@ Instead of relying on a monolithic AI model or manual reviews, TrueTrace orchest
 
 - Deepfake Inspector: Analyzes KYC selfies and Citizen Identity Card images using Alibaba Cloud Qwen-VL Vision AI to detect deepfakes, document tampering, and liveness in <10s.
 - Money-Trail Explorer: Tracks real-time transaction graph streams to identify 6 complex money laundering patterns (mule accounts, structuring, circular flows) and trigger automated risk containment.
-- AML STR Reporter: Generates bilingual (English/Vietnamese) Suspicious Transaction Reports using Qwen LLM to save compliance officers hours of manual paperwork.
+- AML STR Reporter: Generates bilingual (English/Vietnamese) Suspicious Transaction Reports to save compliance officers hours of manual paperwork.
 
-Building a full-stack architecture across 11 microservices in just a few days was a massive endeavor. Qoder became far more than just a coding assistant -- it served as our AI-powered Spec-Driven Development engine.
+Powered by the Alibaba Cloud AI Ecosystem:
+- Qwen-VL Vision AI for eKYC deepfake inspection, document tampering & liveness analysis
+- Qwen-Plus LLM via DashScope for automated bilingual regulatory STR report generation
+- ApsaraDB for PostgreSQL & cloud-native infrastructure for real-time compliance persistence
 
-Qoder helped us:
+Qoder served as our core AI-powered Spec-Driven Development engine to bring this vision to life. Qoder helped us:
 - Break complex compliance requirements into executable specifications (`SPEC.md`)
 - Parallelize multi-repo development using Quest & Expert Mode with autonomous AI subagents
 - Rapidly iterate and debug real-time streaming pipelines across 11 repositories

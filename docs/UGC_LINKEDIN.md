@@ -15,7 +15,13 @@ Instead of relying on a monolithic AI model or manual reviews, TrueTrace orchest
 - Money-Trail Explorer: Tracks real-time transaction graph streams to identify 6 complex money laundering patterns (mule accounts, structuring, circular flows) and trigger automated risk containment.
 - AML STR Reporter: Generates bilingual (English/Vietnamese) Suspicious Transaction Reports using Qwen LLM to save compliance officers hours of manual paperwork.
 
-Building a full-stack architecture across 11 microservices in just a few days was a massive endeavor. Leveraging Qoder's AI-powered Spec-Driven Development methodology (Quest Mode & Expert Mode with parallel AI subagents) allowed us to design, generate, and verify our multi-repo codebase at incredible speed.
+Building a full-stack architecture across 11 microservices in just a few days was a massive endeavor. Qoder became far more than just a coding assistant -- it served as our AI-powered Spec-Driven Development engine.
+
+Qoder helped us:
+- Break complex compliance requirements into executable specifications (`SPEC.md`)
+- Parallelize multi-repo development using Quest & Expert Mode with autonomous AI subagents
+- Rapidly iterate and debug real-time streaming pipelines across 11 repositories
+- Verify generated code with automated unit and full-stack integration tests
 
 We wired it all together using an enterprise tech stack: Spring Boot 3, Python AsyncIO, React 19, Next.js, Apache Kafka, ApsaraDB for PostgreSQL, and Alibaba Cloud AI services.
 

@@ -26,8 +26,7 @@
   <a href="SPEC.md">Development Specs & Prompts</a> &bull;
   <a href="docs/ARCHITECTURE.md">Architecture</a> &bull;
   <a href="docs/TESTING.md">Test Matrix</a> &bull;
-  <a href="docs/PRODUCTION-READINESS.md">Production Readiness</a> &bull;
-  <a href="docs/DEMO-RUNBOOK.md">Demo Runbook</a>
+  <a href="docs/PRODUCTION-READINESS.md">Production Readiness</a>
 </p>
 
 ---
@@ -317,7 +316,6 @@ This deterministic verifier validates the entire pipeline end-to-end:
 - Tests structuring detection with near-threshold VND 190M transfers
 - Verifies STR review/submission human-in-the-loop workflow
 
-Follow [`docs/DEMO-RUNBOOK.md`](docs/DEMO-RUNBOOK.md) for the exact recording sequence.
 
 ### Troubleshooting
 
@@ -416,21 +414,6 @@ See [`docs/PRODUCTION-READINESS.md`](docs/PRODUCTION-READINESS.md) for the compl
 | **AI Provider** | Alibaba Cloud Model Studio -- Qwen-VL (Vision), Qwen-Plus (LLM) via DashScope API |
 | **Dev Tool** | [Qoder](https://qoder.com) -- Spec-Driven AI Development (Quest Mode, Expert Mode, CLI) |
 | **Source Code** | [github.com/Little-Boy-s-TrueTrace](https://github.com/Little-Boy-s-TrueTrace) (10 repositories) |
-
-### Submission Deliverables
-
-- [SPEC.md](SPEC.md) -- Complete Qoder development workflow, all prompts, and AI-accelerated results
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) -- System architecture and data flow documentation
-- [docs/DEMO-RUNBOOK.md](docs/DEMO-RUNBOOK.md) -- Step-by-step deterministic demo recording guide
-- [docs/TESTING.md](docs/TESTING.md) -- Full test matrix and verification commands
-- [docs/PRODUCTION-READINESS.md](docs/PRODUCTION-READINESS.md) -- Production deployment and security checklist
-
-### UGC Posts
-
-As required by the hackathon submission guidelines:
-
-- [LinkedIn Post](docs/UGC_LINKEDIN.md) -- Project description and Qoder experience (@Qoder @AlibabaCloud #QoderHackathon #QoderVietnam)
-- [X/Twitter Post](docs/UGC_TWITTER.md) -- Short-form project announcement (@Qoder #QoderHackathon #QoderVietnam)
 
 ---
 

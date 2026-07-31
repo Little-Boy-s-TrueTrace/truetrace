@@ -9,6 +9,13 @@ Financial institutions face three critical compliance challenges today:
 
 That inspired team Little Boy's to build **TrueTrace** for the #QoderHackathon -- an Autonomous Multi-Agent AI Compliance Platform built to revolutionize how financial institutions handle AML and eKYC.
 
+Imagine a high-risk onboarding or transaction event hitting the bank:
+1. Agent 1 verifies identity & detects deepfakes (<10s)
+2. Agent 2 traces transaction graph streams & auto-freezes suspicious accounts in real-time
+3. Agent 3 automatically drafts a bilingual regulatory STR report
+4. Compliance officer reviews evidence & approves with one click
+Done.
+
 TrueTrace by the numbers:
 - 3 autonomous AI agents collaborating in real-time like an experienced compliance team
 - <10 seconds eKYC deepfake & document liveness verification

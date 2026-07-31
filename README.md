@@ -191,40 +191,54 @@ curl http://localhost/api-bank/health
 
 ## Demo Scenario: End-to-End Compliance Pipeline
 
-The following walkthrough demonstrates all 3 agents working in sequence:
+TrueTrace orchestrates a seamless, multi-agent compliance workflow from onboarding identity protection to real-time asset containment and automated regulatory filing:
 
-### Act 1: Deepfake Detection (Agent 1)
-```
-Customer Portal --> Submit KYC (selfie + CCCD photos)
-    | Kafka: truetrace.kyc.submissions
-Agent 1 --> AI Vision analysis --> Auto APPROVE / REJECT / MANUAL_REVIEW
-    |
-Dashboard --> KYC Center shows result with deepfake & face-match scores
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Customer as 👤 Customer (Web/Mobile)
+    participant CoreAPI as 🏛️ Spring Backend API
+    participant Kafka as ⚡ Kafka Event Bus
+    participant Agent1 as 👁️ Agent 1: Deepfake Inspector
+    participant Agent2 as 🌐 Agent 2: Money-Trail Explorer
+    participant Agent3 as 📄 Agent 3: AML STR Reporter
+    actor Officer as 👮 Compliance Officer (SOC Console)
+
+    note over Customer, Agent1: Act 1: Identity Onboarding & Deepfake Verification
+    Customer->>CoreAPI: Submit KYC (Selfie & CCCD Document)
+    CoreAPI->>Kafka: Publish Event (truetrace.kyc.submissions)
+    Kafka->>Agent1: Consume KYC Event
+    Agent1->>Agent1: Qwen-VL Vision AI (Face Match & Liveness <10s)
+    Agent1-->>CoreAPI: Return Verification Result (APPROVED)
+
+    note over Customer, Agent2: Act 2: Real-Time Fraud & Money Laundering Containment
+    Customer->>CoreAPI: Initiate Rapid Transactions (VND 1B Structuring)
+    CoreAPI->>Kafka: Publish Event (truetrace.transactions)
+    Kafka->>Agent2: Consume Transaction Feed
+    Agent2->>Agent2: Real-Time Graph Analytics (Sliding Window 60s)
+    alt Risk Score >= 7.0 (Mule Account / Rapid Fan-Out)
+        Agent2-->>CoreAPI: Trigger AUTO-FREEZE Account & Create Alert
+        Agent2->>Kafka: Publish Alert (truetrace.alerts)
+    end
+
+    note over Agent3, Officer: Act 3: Autonomous Regulatory Reporting & Human Guardrail
+    Kafka->>Agent3: Consume High-Risk Alert & Evidence Package
+    Agent3->>Agent3: Qwen LLM Auto-Generates Bilingual STR Narrative (<1 min)
+    Agent3-->>CoreAPI: Save STR Draft (Status: DRAFT)
+    CoreAPI-->>Officer: Display Case Alert on SOC Dashboard
+    Officer->>CoreAPI: Human Review & Official Regulator Filing
 ```
 
-### Act 2: Money Laundering Detection (Agent 2)
-```
-Verified scenario --> Aggregate VND 1B, then fan out to 20 targets within 60s
-    | Kafka: truetrace.transactions
-Agent 2 --> Transaction graph analysis --> Detect rapid mule dispersion
-    | Risk score >= 7.0
-Backend --> AUTO-FREEZE source account + Create AML Alert
-    |
-Dashboard --> AML Alerts tab shows new alert with risk breakdown
-```
+### Detailed Pipeline Breakdown
 
-### Act 3: Automated STR Report (Agent 3)
-```
-Agent 2 --> Publishes high-risk alert
-    | Kafka: truetrace.alerts
-Agent 3 --> LLM generates bilingual narrative (EN/VI)
-    |
-Backend --> Creates DRAFT STR Report
-    |
-Dashboard --> STR Reports tab shows report ready for human review
-```
+| Act | Stage & Focus | Trigger & Input | AI & Engine Action | Automated Result | Latency |
+|:---:|:---|:---|:---|:---|:---:|
+| **Act 1** | **Identity Onboarding**<br/>*(Deepfake Inspector)* | Selfie photo & Citizen ID (CCCD) upload | **Qwen-VL Vision AI** evaluates face match, document integrity, and liveness scoring. | Auto **`APPROVE`**, **`REJECT`**, or escalate to **`MANUAL_REVIEW`** | **< 10s** |
+| **Act 2** | **AML Containment**<br/>*(Money-Trail Explorer)* | High-velocity transactions (e.g. 1B VND to 20 targets in 60s) | **Graph Analytics Engine** tracks 6 laundering patterns (Mule dispersion, Structuring, Circular flow). | **Auto-Freeze Account** + Generate high-priority AML alert ($Score \ge 7.0$) | **Real-Time** |
+| **Act 3** | **Regulatory Reporting**<br/>*(AML STR Reporter)* | High-risk alert & complete evidence payload | **Qwen LLM Narrative Generator** compiles bilingual (EN/VI) Suspicious Transaction Report. | Save **`DRAFT` STR** on SOC Dashboard ready for human review & submission | **< 1 min** |
 
-> **Key Insight**: All 3 agents work as an autonomous pipeline -- from fraud detection to account containment to regulatory reporting -- in **seconds** instead of **days**.
+> [!TIP]
+> **Autonomous Compliance Transformation**: Traditional banking compliance requires **2 to 4 hours** per manual STR report. TrueTrace reduces the end-to-end cycle—from fraud containment to regulatory filing—to just **seconds** with strict **Human-in-the-Loop** review boundaries.
 
 ### AML Detection Patterns
 

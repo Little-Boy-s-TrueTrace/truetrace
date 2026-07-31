@@ -1,52 +1,76 @@
 # LinkedIn Post -- TrueTrace by Little Boy's
 
-A compliance officer can spend up to 4 hours investigating and drafting a single Suspicious Transaction Report. Every day, financial institutions sift through millions of transactions while financial criminals constantly evolve their tactics to bypass rule-based detection.
+What if AI could help stop financial crime before it happens?
 
-**Why does this matter?** TrueTrace empowers financial institutions with autonomous AI agents that reduce investigation time from hours to seconds while improving consistency, auditability, and fraud containment.
+Every day, compliance officers sift through millions of transactions while financial criminals constantly evolve their tactics. Preparing a single Suspicious Transaction Report (STR) can take hours of manual investigation, evidence collection, and documentation.
 
-Financial institutions face three critical compliance bottlenecks today:
-- Fake identities bypassing eKYC via deepfakes and altered documents
-- Hidden money laundering networks evading traditional rule-based systems
-- Time-consuming regulatory reporting creating massive operational backlogs
+This is why we built TrueTrace.
 
-That inspired team Little Boy's to build **TrueTrace** for the #QoderHackathon -- an Autonomous Multi-Agent AI Compliance Platform built to revolutionize how financial institutions handle AML and eKYC.
+For the #QoderHackathon, Team Little Boy's developed TrueTrace—an Autonomous Multi-Agent AI Compliance Platform designed to help financial institutions accelerate AML investigations, strengthen eKYC verification, and reduce operational overhead while keeping compliance officers in control of every critical decision.
 
-Imagine a high-risk onboarding or transaction event hitting the bank:
-1. Agent 1 verifies identity & detects deepfakes (<10s)
-2. Agent 2 traces transaction graph streams & auto-freezes suspicious accounts in real-time
-3. Agent 3 automatically drafts a bilingual regulatory STR report
-4. Compliance officer reviews evidence & approves with one click
-Done.
+The challenge
+Financial institutions face three major compliance bottlenecks today:
+• Fake identities created through deepfakes and manipulated identity documents that bypass traditional eKYC processes.
+• Hidden money laundering networks that are difficult to detect using conventional rule-based systems alone.
+• Time-consuming regulatory reporting, creating significant operational backlogs for compliance teams.
 
-Instead of relying on a monolithic AI model or manual reviews, TrueTrace orchestrates three specialized autonomous AI agents:
-- Deepfake Inspector: Analyzes KYC selfies and Citizen Identity Card images using Alibaba Cloud Qwen-VL Vision AI to detect deepfakes, document tampering, and liveness in <10s.
-- Money-Trail Explorer: Tracks real-time transaction graph streams to catch 6 laundering patterns (mule accounts, structuring, circular flows) and trigger automated risk containment.
-- AML STR Reporter: Generates bilingual (English/Vietnamese) Suspicious Transaction Reports to eliminate manual compliance backlogs.
+Our solution: Three AI agents working together
+Instead of relying on a single AI model, TrueTrace orchestrates three autonomous AI agents, each specializing in a different part of the compliance workflow.
 
-Powered by the Alibaba Cloud AI Ecosystem:
-- Qwen-VL Vision AI for eKYC deepfake inspection, document tampering & liveness analysis
-- Qwen-Plus LLM via DashScope for automated bilingual regulatory STR report generation
-- ApsaraDB for PostgreSQL & cloud-native infrastructure for real-time compliance persistence
+Deepfake Inspector
+Uses Alibaba Cloud Qwen-VL Vision AI to analyze KYC selfies and Citizen Identity Cards, detecting deepfakes, document tampering, and liveness in under 10 seconds.
 
-Qoder served as our core AI-powered Spec-Driven Development engine to bring this vision to life. Qoder helped us:
-- Break complex compliance requirements into executable specifications (`SPEC.md`)
-- Parallelize multi-repo development using Quest & Expert Mode with autonomous AI subagents
-- Rapidly iterate and debug real-time streaming pipelines across 11 repositories
-- Verify generated code with automated unit and full-stack integration tests
+Money-Trail Explorer
+Analyzes real-time transaction graph streams to identify six complex AML patterns, including mule accounts, structuring, and circular money flows, then triggers automated risk containment workflows.
 
-TrueTrace by the numbers:
-- 3 autonomous AI agents collaborating in real-time
-- <10 seconds eKYC deepfake & document liveness verification
-- 6 real-time AML patterns detected (mule accounts, structuring, circular flows)
-- 100% automated bilingual (EN/VI) STR report drafting (4 hours reduced to seconds)
-- 11 cloud-native microservices deployed on Alibaba Cloud
+AML STR Reporter
+Leverages Qwen-Plus via DashScope to generate bilingual (English/Vietnamese) Suspicious Transaction Reports, dramatically reducing manual paperwork for compliance officers.
 
-Built on an enterprise-grade cloud-native architecture spanning 11 microservices, Apache Kafka event streaming, Alibaba Cloud AI, and modern Java/Python web services.
+Imagine the workflow
+A customer submits onboarding information or a high-risk transaction is detected.
+Deepfake Inspector verifies identity authenticity in seconds.
+Money-Trail Explorer analyzes transaction relationships and identifies suspicious financial behavior.
+AML STR Reporter automatically prepares a complete bilingual compliance report.
+A compliance officer reviews the AI-generated evidence and makes the final decision.
 
-We cannot wait to present this to the judges and community!
+AI accelerates the investigation—humans remain in control of every critical compliance decision.
 
-Would you trust autonomous AI agents to assist compliance officers in high-risk financial decisions? We would love to hear your thoughts below!
+Powered by the Alibaba Cloud AI ecosystem
+Our platform is built on Alibaba Cloud technologies, including:
+• Qwen-VL Vision AI for eKYC verification, deepfake detection, document analysis, and liveness checking.
+• Qwen-Plus (DashScope) for bilingual regulatory report generation.
+• ApsaraDB for PostgreSQL for secure, cloud-native compliance data persistence.
 
--- Team Little Boy's
+How Qoder helped us build TrueTrace
+Qoder became much more than a coding assistant—it became our AI-powered Spec-Driven Development engine.
 
-@Qoder @Alibaba Cloud #QoderHackathon #QoderVietnam #AML #KYC #FinTech #AI #AlibabaCloud #Qwen
+Throughout development, Qoder helped us:
+• Transform complex compliance requirements into executable specifications (SPEC.md)
+• Parallelize development using Quest Mode and Expert Mode with autonomous AI subagents
+• Rapidly iterate across multiple repositories while debugging real-time event-driven workflows
+• Verify generated implementations using automated unit tests and full-stack integration tests
+
+Building an enterprise-grade distributed platform in only a few days would have been incredibly difficult without this AI-assisted development workflow.
+
+TrueTrace by the numbers
+3 autonomous AI agents collaborating in real time
+11 cloud-native microservices
+<10 seconds for eKYC deepfake and liveness verification
+6 real-time AML patterns detected
+100% automated bilingual (EN/VI) STR drafting
+Built using Spring Boot 3, Python AsyncIO, React 19, Next.js, Apache Kafka, and Alibaba Cloud AI Services
+
+We're incredibly proud of what our team accomplished during the hackathon and excited to share TrueTrace with the judges and the community.
+
+We believe the future of financial compliance isn't about replacing people—it's about giving compliance professionals intelligent AI teammates that make faster, more informed, and more consistent decisions.
+
+Would you trust autonomous AI agents to assist compliance officers in high-risk financial decisions while keeping humans in the loop?
+
+We'd love to hear your thoughts.
+
+GitHub: https://github.com/Little-Boy-s-TrueTrace
+
+— Team Little Boy's
+
+@Qoder @Alibaba Cloud
+#QoderHackathon #QoderVietnam #AlibabaCloud #Qwen #AgenticAI #MultiAgent #AML #KYC #RegTech #FinTech #ArtificialIntelligence #OpenSource

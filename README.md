@@ -230,7 +230,7 @@ All prompts used to build TrueTrace are documented in [`SPEC.md`](SPEC.md), incl
 6. **React Compliance Dashboard** -- Real-time monitoring console with KPI cards and alert feeds
 7. **Next.js Customer Portal** -- Multi-step registration, KYC upload, and transfer forms
 8. **Docker Compose Orchestration** -- 11-container microservices with networking and health checks
-9. **Terraform AWS Infrastructure** -- VPC, RDS, ElastiCache, MSK, ECS Fargate deployment
+9. **Terraform Alibaba Cloud Infrastructure** -- VPC, ApsaraDB, Redis, ApsaraMQ Kafka, ECS deployment
 
 ---
 
@@ -249,7 +249,7 @@ TrueTrace is organized as a Git superproject with 10 submodules, each maintained
 | **[truetrace-web-client](https://github.com/Little-Boy-s-TrueTrace/truetrace-web-client)** | Next.js 16 / Node 22 | Customer portal enabling users to register, log in, transfer money, and submit KYC documents |
 | **[truetrace-mobile-app](https://github.com/Little-Boy-s-TrueTrace/truetrace-mobile-app)** | Flutter 3 / Dart | Customer mobile banking application with transactions, transfer forms, and balance views |
 | **[truetrace-deployment](https://github.com/Little-Boy-s-TrueTrace/truetrace-deployment)** | Docker Compose / Helm / K8s | Container orchestration, Nginx gateway, Kafka init scripts, and deployment configurations |
-| **[truetrace-terraform](https://github.com/Little-Boy-s-TrueTrace/truetrace-terraform)** | HCL / Terraform | Cloud infrastructure definitions targeting AWS (ECS, RDS, MSK, ElastiCache, WAF) |
+| **[truetrace-terraform](https://github.com/Little-Boy-s-TrueTrace/truetrace-terraform)** | HCL / Terraform | Cloud infrastructure definitions targeting Alibaba Cloud (ECS, ApsaraDB, ApsaraMQ Kafka, Redis, SLB, OSS) |
 
 ---
 

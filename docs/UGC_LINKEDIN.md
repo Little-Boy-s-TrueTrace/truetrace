@@ -9,7 +9,7 @@ Financial institutions face three critical compliance challenges today:
 
 That inspired team Little Boy's to build **TrueTrace** for the #QoderHackathon -- an Autonomous Multi-Agent AI Compliance Platform built to revolutionize how financial institutions handle AML and eKYC.
 
-Instead of relying on manual reviews and fragmented data, TrueTrace deploys three specialized AI agents working as a collaborative team:
+Instead of relying on a monolithic AI model or manual reviews, TrueTrace orchestrates three autonomous AI agents that collaborate in real-time like an experienced compliance team:
 
 - Deepfake Inspector: Analyzes KYC selfies and Citizen Identity Card images using Alibaba Cloud Qwen-VL Vision AI to detect deepfakes, document tampering, and liveness in <10s.
 - Money-Trail Explorer: Tracks real-time transaction graph streams to identify 6 complex money laundering patterns (mule accounts, structuring, circular flows) and trigger automated risk containment.

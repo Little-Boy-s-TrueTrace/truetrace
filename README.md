@@ -39,6 +39,7 @@
 - [System Design & Data Flow](#system-design--data-flow)
 - [Demo Scenario: End-to-End Pipeline](#demo-scenario-end-to-end-compliance-pipeline)
 - [AML Detection Patterns](#aml-detection-patterns)
+- [Powered by Alibaba Cloud AI & Infrastructure](#powered-by-alibaba-cloud-ai--infrastructure)
 - [Built with Qoder: Spec-Driven Development](#built-with-qoder-spec-driven-development)
 - [Project Structure](#project-directory-structure)
 - [Quick Start](#quick-start)
@@ -192,6 +193,24 @@ The Money-Trail Explorer Agent implements six concurrent pattern-detection algor
 **Freeze threshold**: When cumulative risk score reaches **7/10**, the agent automatically freezes the account, creates an AML alert, and triggers STR generation.
 
 All thresholds are configurable via environment variables. Banks must calibrate using historical data and their own regulatory processes.
+
+---
+
+## Powered by Alibaba Cloud AI & Infrastructure
+
+TrueTrace is built natively on **Alibaba Cloud**'s enterprise AI and cloud-native infrastructure, leveraging Model Studio and DashScope APIs for multi-modal and large language model inference:
+
+| Component | Alibaba Cloud Service | How TrueTrace Uses It |
+|-----------|----------------------|-----------------------|
+| **Vision AI** | **Qwen-VL (Model Studio)** | eKYC selfie & Citizen Identity Card inspection, facial landmark verification, GAN deepfake artifact detection, and document liveness in <10s |
+| **Language Model** | **Qwen-Plus (DashScope)** | Autonomous generation of formal, bilingual (English/Vietnamese) Suspicious Transaction Reports (STR) compliant with SBV regulations |
+| **Database** | **ApsaraDB for PostgreSQL** | Production relational persistence for core banking ledgers, KYC verification sessions, AML alerts, and STR report drafts |
+| **Message Streaming** | **ApsaraMQ for Kafka** | Distributed high-throughput event streaming bus coordinating 6 real-time compliance topics across 3 autonomous AI agents |
+| **Caching & State** | **ApsaraDB for Redis** | High-speed sliding-window transaction graph state cache and rate-limiting session store |
+| **Load Balancing** | **Server Load Balancer (SLB)** | High-availability traffic routing and TLS termination for banking web clients and compliance dashboard |
+| **Evidence Storage** | **Object Storage Service (OSS)** | Secure storage for encrypted KYC biometrics, deepfake analysis artifacts, and generated STR PDF reports |
+| **Observability** | **Simple Log Service (SLS)** | Centralized audit trail logging, security event tracking, and regulatory compliance monitoring |
+| **Infrastructure as Code** | **Terraform (alicloud provider)** | Automated 5-tier VPC network isolation, security group policies, and pay-as-you-go cloud resource provisioning |
 
 ---
 

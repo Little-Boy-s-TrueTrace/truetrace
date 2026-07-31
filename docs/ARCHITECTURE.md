@@ -1,6 +1,12 @@
 # TrueTrace Architecture
 
-TrueTrace is a compliance decision-support system for banks. Three independent agents communicate via Kafka; every action leaves structured evidence. The system does not treat model outputs as legal conclusions and does not submit STRs to regulators automatically.
+## High-Level System Architecture & Deployment
+
+![Alibaba Cloud Deployment Architecture](images/system-architecture.jpg)
+
+## System Design & Data Flow Workflow
+
+![System Design Workflow](images/system-design.jpg)
 
 ## Standard Business Flow
 

@@ -1,0 +1,16 @@
+{
+  "fixtureType": "fictional-demo-only",
+  "fullName": "Nguyễn Văn An",
+  "cccdNumber": "079204012345",
+  "dateOfBirth": "1999-03-15",
+  "pass": {
+    "selfie": "kyc-images/selfie.png",
+    "idFront": "kyc-images/cccd_front.png",
+    "idBack": "kyc-images/cccd_back.png"
+  },
+  "reject": {
+    "selfie": "kyc-images/synthetic_deepfake_test.png",
+    "expectedDecision": "REJECTED",
+    "testMarker": "synthetic_deepfake"
+  }
+}

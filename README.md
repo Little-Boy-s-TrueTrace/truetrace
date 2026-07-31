@@ -42,53 +42,40 @@ TrueTrace is a next-generation **autonomous compliance platform** designed for b
 
 ## System Architecture
 
-TrueTrace utilizes an event-driven architecture powered by Apache Kafka, Redis, and PostgreSQL, binding modern microservices into a unified compliance ecosystem:
+TrueTrace utilizes a multi-zone, event-driven enterprise architecture deployed on **Alibaba Cloud**, powered by Apache Kafka, Redis, ApsaraDB for PostgreSQL, and Alibaba Cloud AI services (Qwen-VL, DashScope LLM API):
 
-```mermaid
-graph TB
-    subgraph "Client Layer"
-        WC["truetrace-web-client<br/>(Next.js Portal)"]
-        DA["truetrace-dashboard<br/>(React Admin Console)"]
-        MA["truetrace-mobile-app<br/>(Flutter Bank App)"]
-    end
+![TrueTrace System Architecture Deployment on Alibaba Cloud](docs/images/system-architecture.jpg)
 
-    subgraph "Backend API Layer"
-        BE["truetrace-backend<br/>(Spring Boot API)"]
-        DB["truetrace-dashboard-backend<br/>(Go API Proxy)"]
-    end
+### Multi-Tier Architecture Breakdown
 
-    subgraph "Event & Cache Bus"
-        K["Apache Kafka<br/>(Event Streaming)"]
-        R["Redis Cache<br/>(Agent State & Lock)"]
-    end
+- **Client Applications**: Next.js Web Portal, React Admin Dashboard (SOC Console), Flutter Mobile Banking App.
+- **API Gateway & Backends (Public & App Subnets)**: Alibaba Cloud DNS $\rightarrow$ SLB $\rightarrow$ WAF $\rightarrow$ Nginx Reverse Proxy routing to **Spring Boot (Java 17 Core Banking API)** and **Go Dashboard API Proxy**.
+- **Event Stream & Caching (Middleware Subnet)**: **Apache Kafka** event streaming bus for real-time KYC/transaction feeds and **Redis** for state caching and agent locks.
+- **Multi-Agent AI Engine (AI Subnet)**:
+  - **Deepfake Inspector Agent**: Qwen-VL Vision AI for eKYC face matching, liveness detection, and document verification (< 10s).
+  - **Money-Trail Graph Explorer Agent**: Real-time graph analytics detecting mule accounts, velocity anomalies, circular flows, and structuring with automated freeze triggers.
+  - **AML STR Report Generator Agent**: LLM-driven bilingual (EN/VI) Suspicious Transaction Report generator (< 1 min).
+- **Data & Storage (Data Subnet)**: **ApsaraDB for PostgreSQL** (Primary & Standby with replication) and **Alibaba Cloud OSS** for evidence and STR report storage.
+- **Shared Services & Observability**: RAM (IAM), KMS, ActionTrail, Cloud Firewall, ARMS Monitoring, SLS Log Service, Prometheus, and Grafana.
 
-    subgraph "Multi-Agent AI Engine"
-        AE["truetrace-agent-engine<br/>(Python/AsyncIO)"]
-        A1["Agent 1: Deepfake Inspector"]
-        A2["Agent 2: Money-Trail Explorer"]
-        A3["Agent 3: AML Reporter"]
-    end
+---
 
-    subgraph "Data Store"
-        PG["PostgreSQL Database"]
-    end
+## System Design & Data Flow
 
-    WC -->|"KYC Submissions"| BE
-    MA -->|"Transactions"| BE
-    DA -->|"Compliance Control"| DB
-    DB -->|"Proxy Requests"| BE
-    BE -->|"Publish Events"| K
-    K -->|"Consume Telemetry"| AE
-    AE --> A1
-    AE --> A2
-    AE --> A3
-    A1 -->|"Identity Status Update"| BE
-    A2 -->|"Mule Account Freeze"| BE
-    A3 -->|"Submit STR Reports"| BE
-    BE --> PG
-    BE --> R
-    DB --> PG
-```
+The platform executes an end-to-end data processing and multi-agent orchestration workflow:
+
+![TrueTrace System Design Workflow](docs/images/system-design.jpg)
+
+### Pipeline Stages
+
+1. **User Interaction**: Users onboarding via Web/Mobile apps submit eKYC photo/video or initiate financial transactions.
+2. **Event Streaming & Ingestion**: Kafka Producers publish KYC & Transaction events into the Kafka Cluster, supported by Schema Registry and Retention & Replay cold topic storage.
+3. **Parallel Multi-Agent AI Processing**:
+   - **Event Dispatcher & Feature Store**: Routes real-time features and event feeds to the Orchestrator & Workflow Engine.
+   - **3 Autonomous Agents**: Deepfake Inspector (Qwen-VL), Money-Trail Explorer (Graph analytics), and AML Reporter (LLM narrative).
+   - **Result Aggregator & Risk Engine**: Normalizes results, performs risk scoring, deduplication, and threshold evaluation.
+4. **Compliance Dashboard & Human Guardrail**: React Compliance Console for human-in-the-loop review, case decisions, manual overrides, and authorized STR regulatory submissions.
+5. **Alibaba Cloud Infrastructure & Storage**: Integrated with ApsaraDB for PostgreSQL, AnalyticDB, OSS, Redis, PAI-EAS, Model Studio (Qwen LLM API), ARMS, SLS, and WAF security.
 
 ---
 
@@ -136,7 +123,7 @@ cd truetrace
 ```bash
 cd truetrace-deployment
 cp .env.example .env
-docker compose up --build -d
+docker compose up --build -d --wait
 ```
 
 First build takes 5-10 minutes. Wait for all containers to be healthy:
@@ -145,7 +132,8 @@ First build takes 5-10 minutes. Wait for all containers to be healthy:
 docker compose ps
 ```
 
-You should see 11 containers running (postgres, redis, kafka, kafka-init, kafka-ui, backend, agent-engine, dashboard-backend, dashboard-frontend, web-client, nginx).
+You should see 10 long-running containers healthy. `kafka-init` is a one-shot
+container and should show `Exited (0)` after creating the six topics.
 
 ### 3. Access the platform
 
@@ -154,18 +142,27 @@ All services are accessed through the Nginx gateway on port 80:
 | Service | URL | Credentials |
 |---------|-----|-------------|
 | **Customer Portal** | http://localhost | Register a new account |
-| **Compliance Dashboard** | http://localhost/soc/ | `admin` / `admin123` |
+| **Compliance Dashboard** | http://localhost/soc/ | OTP login with operator UID `10001` |
 | **Banking API** | http://localhost/api-bank/ | -- |
 | **Dashboard API** | http://localhost/api/ | -- |
 | **Kafka UI (Kafdrop)** | http://localhost:9000 | -- |
 
 ### 4. Run the demo
 
-1. Open http://localhost and register a customer account
-2. Go to KYC page, upload selfie + CCCD front/back images, submit
-3. Open http://localhost/soc/ to see the KYC result on the compliance dashboard
-4. Back on the customer portal, make a money transfer
-5. Check the AML Alerts and STR Reports tabs on the dashboard
+Run the deterministic verifier once before recording:
+
+```bash
+cd ..
+python truetrace-deployment/scripts/full_stack_smoke.py
+```
+
+It creates run-specific accounts, requires KYC approval before every source
+account can transfer, verifies Kafka offsets and PostgreSQL rows, and prints a
+fresh customer/recipient pair for two live structuring transfers. The second
+near-threshold transfer crosses the repeated-structuring rule and produces a
+freeze, AML alert, and linked draft STR. Pre-login the dashboard with its
+one-time token before recording. Follow
+[`docs/DEMO-RUNBOOK.md`](docs/DEMO-RUNBOOK.md) for the exact sequence.
 
 ### Troubleshooting
 
@@ -207,9 +204,9 @@ Dashboard --> KYC Center shows result with deepfake & face-match scores
 
 ### Act 2: Money Laundering Detection (Agent 2)
 ```
-Customer Portal --> Transfer money 3-4 times rapidly (within 60s)
+Verified scenario --> Aggregate VND 1B, then fan out to 20 targets within 60s
     | Kafka: truetrace.transactions
-Agent 2 --> Transaction graph analysis --> Detect velocity anomaly / mule split
+Agent 2 --> Transaction graph analysis --> Detect rapid mule dispersion
     | Risk score >= 7.0
 Backend --> AUTO-FREEZE source account + Create AML Alert
     |

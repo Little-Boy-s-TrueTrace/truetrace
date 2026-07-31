@@ -14,8 +14,112 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  agent-tests:
+    name: Agent engine unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all TrueTrace repositories
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: truetrace-agent-engine/requirements.txt
+
+      - name: Install and test agent engine
+        working-directory: truetrace-agent-engine
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pytest -q tests
+
+  backend-tests:
+    name: Spring backend unit and integration tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all TrueTrace repositories
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: temurin
+          cache: maven
+          cache-dependency-path: truetrace-backend/pom.xml
+
+      - name: Test backend
+        working-directory: truetrace-backend
+        run: mvn --batch-mode clean test
+
+  dashboard-tests:
+    name: Dashboard API and UI tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all TrueTrace repositories
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+          cache-dependency-path: truetrace-dashboard/backend/go.sum
+
+      - name: Test dashboard API
+        working-directory: truetrace-dashboard/backend
+        run: go test ./...
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: truetrace-dashboard/frontend/package-lock.json
+
+      - name: Test, lint and build dashboard UI
+        working-directory: truetrace-dashboard/frontend
+        run: |
+          npm ci
+          npm test
+          npm run lint
+          npm run build
+
+  web-client-tests:
+    name: Customer web client tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all TrueTrace repositories
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: truetrace-web-client/package-lock.json
+
+      - name: Test, lint and build customer portal
+        working-directory: truetrace-web-client
+        run: |
+          npm ci
+          npm test -- --runInBand
+          npm run lint
+          npm run build
+
   docker-e2e:
     name: Build, boot and verify KYC/AML/STR
+    needs: [agent-tests, backend-tests, dashboard-tests, web-client-tests]
     runs-on: ubuntu-latest
     timeout-minutes: 30
 

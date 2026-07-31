@@ -1,6 +1,6 @@
 # LinkedIn Post -- TrueTrace by Little Boy's
 
-What if AI could stop financial crime before it even happens?
+A compliance officer can spend up to 4 hours investigating and drafting a single Suspicious Transaction Report. What if three autonomous AI agents could detect, contain, and report financial crime in seconds?
 
 For the past few days, team Little Boy's has been running on coffee and momentum for the #QoderHackathon. We are excited to unveil our project: **TrueTrace** -- an Autonomous Multi-Agent AI Compliance Platform built to revolutionize how financial institutions handle AML and eKYC.
 

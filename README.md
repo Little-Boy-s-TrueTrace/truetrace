@@ -196,13 +196,13 @@ TrueTrace orchestrates a seamless, multi-agent compliance workflow from onboardi
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Customer as 👤 Customer (Web/Mobile)
-    participant CoreAPI as 🏛️ Spring Backend API
-    participant Kafka as ⚡ Kafka Event Bus
-    participant Agent1 as 👁️ Agent 1: Deepfake Inspector
-    participant Agent2 as 🌐 Agent 2: Money-Trail Explorer
-    participant Agent3 as 📄 Agent 3: AML STR Reporter
-    actor Officer as 👮 Compliance Officer (SOC Console)
+    actor Customer as Customer (Web/Mobile)
+    participant CoreAPI as Spring Backend API
+    participant Kafka as Kafka Event Bus
+    participant Agent1 as Agent 1: Deepfake Inspector
+    participant Agent2 as Agent 2: Money-Trail Explorer
+    participant Agent3 as Agent 3: AML STR Reporter
+    actor Officer as Compliance Officer (SOC Console)
 
     note over Customer, Agent1: Act 1: Identity Onboarding & Deepfake Verification
     Customer->>CoreAPI: Submit KYC (Selfie & CCCD Document)

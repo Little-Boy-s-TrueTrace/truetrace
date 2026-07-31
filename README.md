@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Kafka-3.9-231F20?style=flat-square&logo=apachekafka" alt="Kafka"/>
   <img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&logo=postgresql" alt="PostgreSQL"/>
   <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker" alt="Docker"/>
-  <img src="https://img.shields.io/badge/Terraform-AWS-7B42BC?style=flat-square&logo=terraform" alt="Terraform"/>
+  <img src="https://img.shields.io/badge/Terraform-Alibaba%20Cloud-7B42BC?style=flat-square&logo=terraform" alt="Terraform"/>
   <img src="https://img.shields.io/badge/AI-Alibaba%20Qwen--VL%20%26%20Qwen--Plus-FF6A00?style=flat-square" alt="Qwen"/>
 </p>
 

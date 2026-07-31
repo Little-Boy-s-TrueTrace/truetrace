@@ -27,7 +27,7 @@ Financial institutions in Vietnam face an escalating compliance crisis. The Stat
 
 | Challenge | Current Reality | Business Impact |
 |---|---|---|
-| **Deepfake Identity Fraud** | AI-generated faces and altered Citizen ID cards (CCCD) bypass manual KYC review | Criminal accounts are onboarded unknowingly, exposing banks to regulatory fines and fraud losses |
+| **Deepfake Identity Fraud** | AI-generated faces and altered Citizen Identity Cards bypass manual KYC review | Criminal accounts are onboarded unknowingly, exposing banks to regulatory fines and fraud losses |
 | **Complex Money Laundering** | Sophisticated layering via mule accounts, structuring (smurfing), and circular flows across hundreds of accounts | Traditional rule-based systems detect only simple patterns; complex networks evade detection entirely |
 | **STR Reporting Burden** | Each STR requires **2-4 hours** of manual drafting by compliance officers, including evidence gathering, narrative writing, and bilingual translation | Growing backlogs, missed regulatory deadlines, and significant labor costs per report |
 
@@ -69,7 +69,7 @@ TrueTrace is designed as an **Alibaba Cloud-native** compliance platform. Every 
 
 | Alibaba Cloud Service | TrueTrace Usage | Agent |
 |---|---|---|
-| **Model Studio / Qwen-VL** | Vision AI for face matching, liveness detection, document integrity analysis on selfie + CCCD photos | Deepfake Inspector (Agent 1) |
+| **Model Studio / Qwen-VL** | Vision AI for face matching, liveness detection, document integrity analysis on selfie + Citizen Identity Card photos | Deepfake Inspector (Agent 1) |
 | **DashScope / Qwen-Plus** | LLM for bilingual (EN/VI) Suspicious Transaction Report narrative generation from structured evidence | AML STR Reporter (Agent 3) |
 | **ApsaraDB for PostgreSQL** | Primary + Standby with replication for compliance data persistence (accounts, transactions, KYC sessions, AML alerts, STR reports) | All Agents |
 | **Alibaba Cloud OSS** | Object storage for evidence files (KYC photos, signed STR PDFs, audit logs) | Agent 1, Agent 3 |
@@ -208,7 +208,7 @@ Provide the complete `main.py` and a `requirements.txt`.
 
 **Initial Prompt:**
 ```text
-Write a Python function that takes a base64 encoded image and sends it to the Alibaba Cloud Qwen-VL API to check if the ID card (CCCD) is a deepfake or altered.
+Write a Python function that takes a base64 encoded image and sends it to the Alibaba Cloud Qwen-VL API to check if the Citizen Identity Card is a deepfake or altered.
 ```
 
 **Refinement Prompt (after testing):**
@@ -275,7 +275,7 @@ Make the design dark mode by default, modern, and professional (FSI style).
 Create a Next.js (App Router) client portal.
 Needs three main pages:
 1. `/register`: A multi-step form for user registration.
-2. `/kyc`: A page to upload front/back of ID card (CCCD) and a selfie. Connect this to the backend `/api/v1/kyc/upload` endpoint.
+2. `/kyc`: A page to upload front/back of Citizen Identity Card and a selfie. Connect this to the backend `/api/v1/kyc/upload` endpoint.
 3. `/dashboard`: Shows current balance and a form to initiate a transfer (Account Number, Amount, Description).
 Use React Hook Form for validation and standard Tailwind classes for styling.
 ```

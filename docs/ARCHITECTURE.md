@@ -10,10 +10,10 @@
 
 ## Standard Business Flow
 
-1. Customer submits full name, CCCD (Citizen Identity Card), selfie, and front/back photos of the ID document.
+1. Customer submits full name, Citizen Identity Card, selfie, and front/back photos of the ID document.
 2. Backend creates a KYC session, saves evidence references, and publishes an event to `truetrace.kyc.submissions`.
 3. Fraud Context & Deepfake Inspector:
-   - validates CCCD structure;
+   - validates Citizen Identity Card structure;
    - cross-references the national identity API if configured;
    - calls Alibaba Model Studio/Qwen-VL or Alibaba eKYC gateway;
    - returns deepfake score, face-match score, liveness score, explanation signals, and recommendation.
@@ -63,7 +63,7 @@ All thresholds are configurable via environment variables. Banks must calibrate 
 
 - Demo mode is a deterministic simulation, clearly labeled, and must not be used as a fraud conclusion.
 - Raw biometrics only travel in short-lived processing events; the application database stores evidence references instead of image payloads.
-- The national CCCD adapter is a hypothetical API contract and does not impersonate real connections.
+- The national Citizen ID adapter is a hypothetical API contract and does not impersonate real connections.
 - The LLM writes only from the evidence package and is instructed not to fabricate facts.
 - Account freezing is a reversible internal action; STR submission always requires human approval.
 - All secrets are passed via environment/secret manager and are never committed to Git.

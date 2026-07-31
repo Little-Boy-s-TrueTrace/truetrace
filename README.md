@@ -57,7 +57,7 @@ Financial institutions in Vietnam and across Southeast Asia face three critical 
 
 | Challenge | Current Pain Point | Impact |
 |---|---|---|
-| **Deepfake Identity Fraud** | Fraudsters use AI-generated faces and altered CCCD documents to bypass KYC onboarding | Banks unknowingly onboard criminal accounts, exposing them to regulatory penalties and financial loss |
+| **Deepfake Identity Fraud** | Fraudsters use AI-generated faces and altered Citizen Identity Card documents to bypass KYC onboarding | Banks unknowingly onboard criminal accounts, exposing them to regulatory penalties and financial loss |
 | **Money Laundering Networks** | Sophisticated layering via mule accounts, structuring (smurfing), and circular flows evade rule-based detection | Billions of VND laundered through complex transaction webs that manual review cannot catch in real-time |
 | **Regulatory Reporting Burden** | Each Suspicious Transaction Report (STR) requires **2-4 hours** of manual drafting by compliance officers | Backlogs grow, regulatory deadlines are missed, and banks face fines from the State Bank of Vietnam |
 
@@ -71,7 +71,7 @@ TrueTrace is a **production-grade, autonomous compliance platform** that deploys
 
 | Agent | Problem Solved | How It Works | Performance |
 |-------|---------------|-------------|:-----------:|
-| **Deepfake Inspector** | Fraudulent identity during eKYC onboarding | Alibaba Qwen-VL Vision AI analyzes selfies & CCCD documents, detects deepfakes, validates face-match and liveness | **< 10 seconds** |
+| **Deepfake Inspector** | Fraudulent identity during eKYC onboarding | Alibaba Qwen-VL Vision AI analyzes selfies & Citizen Identity Card documents, detects deepfakes, validates face-match and liveness | **< 10 seconds** |
 | **Money-Trail Explorer** | Money laundering via mule accounts, structuring, circular flows | Builds real-time transaction graph with sliding window, detects **6 AML patterns** simultaneously, **auto-freezes** accounts when risk > threshold | **Real-time** |
 | **AML Report Generator** | Manual STR report writing (2-4 hours per report) | Qwen LLM generates bilingual (English/Vietnamese) Suspicious Transaction Reports from evidence packages | **< 1 minute** |
 
@@ -141,7 +141,7 @@ sequenceDiagram
     actor Officer as Compliance Officer (SOC Console)
 
     note over Customer, Agent1: Act 1: Identity Onboarding & Deepfake Verification
-    Customer->>CoreAPI: Submit KYC (Selfie & CCCD Document)
+    Customer->>CoreAPI: Submit KYC (Selfie & Citizen ID Document)
     CoreAPI->>Kafka: Publish Event (truetrace.kyc.submissions)
     Kafka->>Agent1: Consume KYC Event
     Agent1->>Agent1: Qwen-VL Vision AI (Face Match & Liveness <10s)
@@ -169,7 +169,7 @@ sequenceDiagram
 
 | Act | Stage & Focus | Trigger & Input | AI & Engine Action | Automated Result | Latency |
 |:---:|:---|:---|:---|:---|:---:|
-| **Act 1** | **Identity Onboarding**<br/>*(Deepfake Inspector)* | Selfie photo & Citizen ID (CCCD) upload | **Qwen-VL Vision AI** evaluates face match, document integrity, and liveness scoring. | Auto **`APPROVE`**, **`REJECT`**, or escalate to **`MANUAL_REVIEW`** | **< 10s** |
+| **Act 1** | **Identity Onboarding**<br/>*(Deepfake Inspector)* | Selfie photo & Citizen Identity Card upload | **Qwen-VL Vision AI** evaluates face match, document integrity, and liveness scoring. | Auto **`APPROVE`**, **`REJECT`**, or escalate to **`MANUAL_REVIEW`** | **< 10s** |
 | **Act 2** | **AML Containment**<br/>*(Money-Trail Explorer)* | High-velocity transactions (e.g. 1B VND to 20 targets in 60s) | **Graph Analytics Engine** tracks 6 laundering patterns (Mule dispersion, Structuring, Circular flow). | **Auto-Freeze Account** + Generate high-priority AML alert (Score >= 7.0) | **Real-Time** |
 | **Act 3** | **Regulatory Reporting**<br/>*(AML STR Reporter)* | High-risk alert & complete evidence payload | **Qwen LLM Narrative Generator** compiles bilingual (EN/VI) Suspicious Transaction Report. | Save **`DRAFT` STR** on SOC Dashboard ready for human review & submission | **< 1 min** |
 

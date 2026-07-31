@@ -3,7 +3,7 @@
 These files are fictional, reproducible test fixtures. They are not real
 identity documents or real customer data.
 
-- Use `kyc-profile.json` for the exact name, CCCD number, and file names to
+- Use `kyc-profile.json` for the exact name, Citizen ID number, and file names to
   enter during the recorded KYC pass scenario.
 - Use `kyc-images/synthetic_deepfake_test.png` only for the explicit negative
   KYC test. The visible banner and file name identify it as a synthetic

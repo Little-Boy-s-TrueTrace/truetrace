@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all TrueTrace repositories
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all TrueTrace repositories
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -64,14 +64,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all TrueTrace repositories
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.26"
+          go-version-file: truetrace-dashboard/backend/go.mod
           cache-dependency-path: truetrace-dashboard/backend/go.sum
 
       - name: Test dashboard API
@@ -79,7 +79,7 @@ jobs:
         run: go test ./...
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
@@ -98,12 +98,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout all TrueTrace repositories
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
@@ -125,7 +125,7 @@ jobs:
 
     steps:
       - name: Checkout all TrueTrace repositories
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 

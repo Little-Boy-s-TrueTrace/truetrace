@@ -44,7 +44,7 @@ Built on an enterprise-grade cloud-native architecture spanning 11 microservices
 
 We cannot wait to present this to the judges and community!
 
-How do you see multi-agent AI systems reshaping regulatory compliance in banking? We would love to hear your thoughts!
+Would you trust autonomous AI agents to assist compliance officers in high-risk financial decisions? We would love to hear your thoughts below!
 
 -- Team Little Boy's
 

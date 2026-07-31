@@ -23,7 +23,7 @@ Qoder helped us:
 - Rapidly iterate and debug real-time streaming pipelines across 11 repositories
 - Verify generated code with automated unit and full-stack integration tests
 
-We wired it all together using an enterprise tech stack: Spring Boot 3, Python AsyncIO, React 19, Next.js, Apache Kafka, ApsaraDB for PostgreSQL, and Alibaba Cloud AI services.
+Built on an enterprise-grade cloud-native architecture spanning 11 microservices, Apache Kafka event streaming, Alibaba Cloud AI, and modern Java/Python web services.
 
 We cannot wait to present this to the judges and community!
 

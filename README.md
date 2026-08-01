@@ -25,6 +25,7 @@
   <strong>Built with <a href="https://qoder.com">Qoder</a></strong> &mdash; AI-Powered Spec-Driven Development<br/>
   <a href="SPEC.md">Development Specs & Prompts</a> &bull;
   <a href="docs/ARCHITECTURE.md">Architecture</a> &bull;
+  <a href="docs/PLAYBOOK.md">AML Investigation Playbook</a> &bull;
   <a href="docs/TESTING.md">Test Matrix</a> &bull;
   <a href="docs/PRODUCTION-READINESS.md">Production Readiness</a>
 </p>
